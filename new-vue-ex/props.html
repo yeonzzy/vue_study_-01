@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!--프롭스(props) 문법
+        <app-header v-bind:프롭스 속성 이름="상위 컴포넌트의 데이터 이름"></app-header>
+        app-header기준 상위 컴포넌트 : Root -> 데이터 이름 : message
+        props 속성이름은 변수에 만들어줌-->
+        <app-header v-bind:propsdata="message"></app-header>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 변수이름은 카메인케이스 : 두번째단어는 대문자로 표시 (네이밍기법)
+        // 컴포넌트 통신을 이용하면 코딩이 길어지므로
+        // 가독성을 위해 변수에 담아 활용
+        var appHeader = {
+            // {{}} 데이터바인딩
+            template: '<h1>{{ propsdata }}</h1>',
+            props: ['propsdata']
+        }
+
+        new Vue({
+            el: '#app',
+            // components: {
+            //     'app-header' : {
+            //         template: '<h1>Header</h1>'
+            //     }
+            // }
+            components: {
+                'app-header': appHeader
+            },
+            data: {
+                message: 'hi'
+            }
+        });
+    </script>
+</body>
+
+</html>
