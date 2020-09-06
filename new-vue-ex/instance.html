@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // var vm = new Vue({
+        //     el: '#app',  //body태그안 #app를 가지고 있는 태그에게 instance를 붙인다.
+        //                 //뷰의 어떤 기능과 속성이 유효해짐
+        //                 //el값은 항상 지정되어 있어야한다.
+        //                 //instance인 new Vue()는 특정태그에 붙여 있어야 한다. 
+        //     data:{
+        //         message:'hi'
+        //     }
+        // });
+        var vm = new Vue({
+            el: '#app', //body태그안 #app를 가지고 있는 태그에게 instance를 붙인다.
+            data: {
+                message: 'hi'
+            },
+            methods: {
+
+            },
+        });
+    </script>
+</body>
+
+</html>
