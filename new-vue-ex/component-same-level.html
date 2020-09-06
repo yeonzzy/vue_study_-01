@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <app-header v-bind:propsdata="num"></app-header>
+        <!--deliverNum(value) 암묵적으로 value을 넘겨줌-->
+        <app-content v-on:pass="deliverNum"></app-content>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var appHeader = {
+            template: '<div>Header</div>',
+            props: ['propsdata']
+        }
+
+        var appConetnt = {
+            template: '<div>Content<button v-on:click="passNum">pass</button></div>',
+            methods: {
+                passNum: function () {
+                    this.$emit('pass', 10);
+                }
+            }
+        }
+
+        new Vue({
+            el: '#app',
+            components: {
+                'app-header': appHeader,
+                'app-content': appConetnt
+            },
+            data: {
+                num: 0
+            },
+            methods: {
+                //pass의 인자값 '10'은 value로 받을 수 있음
+                deliverNum: function (value) {
+                    this.num = value;
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
