@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Axios</title>
+</head>
+
+<body>
+    <div id="app">
+        <!--button 클릭시 getData 메소드 호출-->
+        <button v-on:click="getData">get user</button>
+        <!--data의 속성을 화면에 나타내기-->
+        <div>
+            {{ users }}
+        </div>
+    </div>
+
+    <!--Vue.js CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--axios CDN-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                users: []
+            },
+            methods: {
+                getData: function () {
+                    var vm = this;
+
+                    // 호출하기전의 this는 기본적인 인스턴스나 컴포넌트를 바라봄
+                    // console.log(this);
+
+                    //약 10개의 샘플 사용자 정보
+                    //jsonplaceholder : 자바스크립트로 API를 요청할 때 테스트할 수 있는 사이트
+                    axios.get('https://jsonplaceholder.typicode.com/users/')
+                        //.then .chatch - promise의 개념을 익혀야함.
+                        //성공시 then으로 진입
+                        .then(function (response) {
+                            console.log(response.data);
+
+                            // 여기서의 this는 비동기적 처리에 의해 들어오는 callBack함수
+                            // 실행 컨텍스트가 바뀌면서 자연스럽게 바뀜.
+                            // console.log(this);
+
+                            vm.users = response.data;
+                        })
+                        // 실패시 catch로 진입
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
