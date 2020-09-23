@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v-bind 특정 데이터의 값을 연결하여 관리할 때 사용
+            uuid로 관리되는 값을 바인딩 - 화면에서 표현되는 값 뿐만아니라 전체적인 DOM에 대한 정보들을 바로 반응하여 변경. reactivity
+            실제 화면에 표시 <p id="abc1234" class="text-blue">{{ num }}</p> -->
+        <p v-bind:id="uuid" v-bind:class="name">{{ num }}</p>
+        <p>{{ doubleNum }}</p>
+
+        <!--로딩상태면 true 로딩상태가 아니면 false (메세지출력) if else문-->
+        <!--login 하기 전 로딩상태-->
+        <div v-if="loading">
+            Loading...
+        </div>
+        <!--login 완료 후 메세지-->
+        <div v-else>
+            test user has been logged in
+        </div>
+        <div v-show="loading">
+            Loading...
+        </div>
+
+        <!-- TODO : 인풋 박스를 만들고 입력된 값을 p태그에 출력해보기 -->
+        <input type="text" v-model="message">
+        <p> {{ message }} </p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // var input = document.querySelector('input');
+        // var input = $('input');
+        new Vue({
+            el: '#app',
+            data: {
+                num: 10,
+                uuid: 'abc1234',
+                name: 'text-blue',
+                loading: true,
+                message: ''
+            },
+            computed: {
+                doubleNum: function () {
+                    return this.num * 2;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
