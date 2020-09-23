@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    {{ num }}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        num: 10
+      },
+
+      //로직이 실행될 때 데이터의 기준 num
+      //빠르게 계산될 수 있음. (텍스트연산)
+      //단순한 값에 대한 계산: 벨리데이션의 값
+      computed: {
+        doubleNum: function() {
+          return this.num * 2;
+        }
+      },
+
+      //num의 값을 조정
+      //매번 실행되는게 부담스러운 무거운 로직에 사용
+      watch: {
+                        //갱신값, 이전값
+        num: function(newValue, oldValue) {
+          this.fetchUserByNumber(newValue);
+        }
+      },
+      methods: {
+        fetchUserByNumber: function(num) {
+          // console.log(num);
+          axios.get(num);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
